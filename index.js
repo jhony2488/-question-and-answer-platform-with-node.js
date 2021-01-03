@@ -1,7 +1,8 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 const database = require('./database/connection')
-const pergunta = require('./database/pergunta')
+const pergunta = require('./database/Pergunta')
+const resposta = require('./database/Resposta')
 const app = express()
 
 database
@@ -43,17 +44,40 @@ app.post('/salvarpergunta', (req, res) => {
 
 app.get('/perguntar/:id', (req, res) => {
   let id = req.params.id
-  pergunta.findOne({ where: { id } }).then((res) => {
-    if (res != undefined) {
-      res.render('perguntaOne', {
-        pergunta: res,
-      })
+  pergunta.findOne({ where: { id } }).then((pergunta) => {
+    if (pergunta != undefined) {
+      resposta
+        .findAll({
+          wher: {
+            perguntaId: pergunta.id,
+          },
+        })
+        .then((respostas) => {
+          res.render('perguntaOne', {
+            pergunta,
+            respostas,
+          })
+        })
     } else {
       res.redirect('/')
     }
   })
 })
-
+app.post('/responder', (req, res) => {
+  let perguntaId = req.body.perguntaId
+  let body = req.body.body
+  if (perguntaId == null) {
+    console.log('id esta nulo')
+  }
+  resposta
+    .create({
+      body,
+      perguntaId,
+    })
+    .then(() => {
+      res.redirect('/perguntar/' + perguntaId)
+    })
+})
 app.listen(8080, () => {
   console.log('app rodando')
 })
