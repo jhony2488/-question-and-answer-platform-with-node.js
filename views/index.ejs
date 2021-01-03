@@ -1,7 +1,28 @@
 <%- include ('partials/header.ejs'); %>
   <body>
-    <h1>Perguntas e Respostas</h1>
-    <a href="/perguntar">Clique aqui para fazer uma pergunta</a>
+    <%- include ('partials/navbar.ejs'); %>
+    <div class="container">
+        <h1 class="title-home">Perguntas e Respostas</h1>
+        <a href="/perguntar">Clique aqui para fazer uma pergunta</a>
+        <br/>
+        <br/>
+        <% perguntas.forEach((pergunta)=>{ %>
+            
+        <div class="card">
+            <div class="card-header">
+                <h3><%= pergunta.title %></h3>
+        </div>
+        <div class="card-body">
+           <p><%= pergunta.description %></p>
+        </div>
+        <div class="card-foot">
+           <a href="" class="btn btn-primary">Responder</a>
+        </div>
+   </div>
+   <br/>
+        <%})%>
+    </div>
+
   </body>
   <%- include ('partials/footerScripts.ejs'); %>
 </html>

@@ -7,3 +7,7 @@ body {
 .container {
   margin-top: 50px;
 }
+.title-home,
+.description {
+  color: white;
+}
