@@ -8,7 +8,39 @@
     <link rel="stylesheet" href="/css/index.css" />
   </head>
   <body>
-    <h1>bootstrap</h1>
+    <div class="container">
+      <div class="card">
+        <div class="card-header">
+          <h2>Realizar Perguntas</h2>
+        </div>
+        <div class="card-body">
+          <form action="">
+            <label for="title"> Titulo </label>
+            <br />
+            <input
+              type="text"
+              placeholder="Titulo"
+              name="title"
+              class="form-control"
+              id="title"
+            />
+            <label for="pergunta">Descrição</label>
+            <textarea
+              name=""
+              id="pergunta"
+              cols="30"
+              rows="10"
+              class="form-control"
+            >
+            </textarea>
+            <br />
+            <button type="submit" class="btn btn-success">
+              Enviar Pergunta
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
   </body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
   <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
